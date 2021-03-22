@@ -1,4 +1,4 @@
-FROM nvidia/cuda:9.2-devel
+FROM nvidia/cuda:9.2-devel@sha256:ae9c133e5e2278e6631af99466163fb75ab907f37bbc79883507c1c2b7844f52
 
 ENV TZ=America/Chicago DEBIAN_FRONTEND="noninteractive"
 RUN apt-get update && apt-get install -y git cmake
@@ -15,7 +15,9 @@ ADD https://github.com/xmrig/xmrig/releases/download/v6.10.0/SHA256SUMS.sig SHA2
 ADD https://github.com/xmrig/xmrig/releases/download/v6.10.0/xmrig-6.10.0-linux-static-x64.tar.gz xmrig-6.10.0-linux-static-x64.tar.gz
 
 RUN gpg --verify SHA256SUMS.sig SHA256SUMS
-RUN shasum --check --ignore-missing ./SHA256SUMS
+RUN mv SHA256SUMS SHA256SUMS.1
+RUN grep "xmrig-6.10.0-linux-static-x64.tar.gz" SHA256SUMS.1 > SHA256SUMS
+RUN shasum --check ./SHA256SUMS
 
 RUN tar -xvf ./xmrig-6.10.0-linux-static-x64.tar.gz
 
