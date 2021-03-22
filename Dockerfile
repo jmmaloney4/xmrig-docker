@@ -1,4 +1,4 @@
-FROM nvidia/cuda:11.2.2-devel-ubuntu20.04@sha256:66af04302040b76bc04dc69bb7216f31d488938caa09dde95a22517ae97bdf25
+FROM nvidia/cuda:9.2-devel
 
 ENV TZ=America/Chicago DEBIAN_FRONTEND="noninteractive"
 RUN apt-get update && apt-get install -y git cmake
