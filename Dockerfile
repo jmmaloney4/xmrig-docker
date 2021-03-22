@@ -19,9 +19,12 @@ RUN shasum --check --ignore-missing ./SHA256SUMS
 
 RUN tar -xvf ./xmrig-6.10.0-linux-static-x64.tar.gz
 
+RUN mkdir /config/
+RUN cp xmrig-6.10.0/config.json /config/config.json
+
 RUN git clone https://github.com/xmrig/xmrig-cuda.git
 WORKDIR /opt/xmrig/xmrig-cuda/
 RUN cmake . -DCMAKE_BUILD_TYPE=Release -DCUDA_LIB=/usr/local/cuda/lib64 -DCUDA_TOOLKIT_ROOT_DIR=/usr/local/cuda -DCUDA_INCLUDE_DIRS=/usr/local/cuda/include
 RUN make
 
-ENTRYPOINT ["xmrig-6.10.0/xmrig"]
+ENTRYPOINT ["xmrig-6.10.0/xmrig", "-c", "/config/config.json"]
