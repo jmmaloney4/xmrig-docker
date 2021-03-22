@@ -27,4 +27,4 @@ WORKDIR /opt/xmrig/xmrig-cuda/
 RUN cmake . -DCMAKE_BUILD_TYPE=Release -DCUDA_LIB=/usr/local/cuda/lib64 -DCUDA_TOOLKIT_ROOT_DIR=/usr/local/cuda -DCUDA_INCLUDE_DIRS=/usr/local/cuda/include
 RUN make
 
-ENTRYPOINT ["xmrig-6.10.0/xmrig", "-c", "/config/config.json"]
+ENTRYPOINT ["/opt/xmrig/xmrig-6.10.0/xmrig", "-c", "/config/config.json"]
