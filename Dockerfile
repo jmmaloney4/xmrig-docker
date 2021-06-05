@@ -1,4 +1,4 @@
-FROM nvidia/cuda:9.2-devel@sha256:d3a52f50fe3b99ac6da7ed4b2f92edf9b0eb661654000daeb61f1ad342102770
+FROM nvidia/cuda:9.2-devel@sha256:9f03b7235798c2e37b3d567810e25c079d5e5b61f9af7126e79b7bec897bccc0
 
 ENV TZ=America/Chicago DEBIAN_FRONTEND="noninteractive"
 RUN apt-get update && apt-get install -y git cmake
